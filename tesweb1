@@ -1,0 +1,15 @@
+from http.server import HTTPServer,BaseHTTPRequestHandler
+class Server(BaseHTTPRequestHandler):
+    def do_GET(wan):
+        if wan.path == '/':
+            wan.path = '/index.html'
+        try:
+            buka_file = open(wan.path[1:]).read()
+            wan.send_response(200)
+        except:
+            buka_file = "Tugas membuat Web Kak Erich"
+            wan.send_response(404)
+        wan.end_headers()
+        wan.wfile.write(bytes(buka_file, 'utf-8'))
+akhir = HTTPServer(('localhost', 8080),Server)
+akhir.serve_forever()
